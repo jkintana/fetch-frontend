@@ -1,14 +1,13 @@
 'use client'
 
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect } from 'react';
 import BreedButton from '@/components/BreedDisplay';
 
-// Home page. Displays a list of dog breeds and a search bar.
-export default function Home() {
-  const [error, setError] = useState<string | null>(null);
+export default function DogSearch() {
   const [breeds, setBreeds] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredBreeds, setFilteredBreeds] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   // On page load, fetch dog breeds from the API.
   // Handle errors as necessary.
@@ -16,14 +15,15 @@ export default function Home() {
     const fetchBreeds = async () => {
       try {
         const response = await fetch("https://dog.ceo/api/breeds/list/all");
+
         if (!response.ok) {
-          throw new Error("Failed to fetch dog breeds!");
+          throw new Error("Failed to fetch dog breeds");
         }
         const data = await response.json();
         setBreeds(Object.keys(data.message));
+
       } catch (err) {
-        console.error(err);
-        setError("Couldn't fetch dog breeds at this time!"); // TODO - Edit this
+        setError("An error occurred while fetching dog breeds. Please try again later.");
       }
     };
 
@@ -40,8 +40,8 @@ export default function Home() {
     );
   }, [searchTerm, breeds]);
 
-  // Updates the search term state when the user types.
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+  // Function that updates the search term state.
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
