@@ -31,7 +31,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 **Additional Features**
 - [x] API error handling.
 - [x] Search.
+- [ ] Accessibility.
 - [ ] Responsive.
 - [ ] Favorites?
 - [ ] Unit tests?
 - [ ] Sub-breeds?
+
+Friend suggested https://mantine.dev/ for CSS? Or build from scratch?

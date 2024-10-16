@@ -4,6 +4,6 @@ import { BreedDisplayProps } from "@/types"
 // TODO: Mess around with styling and content.
 export default function BreedButton(props: BreedDisplayProps) {
     return (
-        <button>{props.name}</button>
+        <a href={`/breeds/${props.name}`}>{props.name}</a>
     )
 }
