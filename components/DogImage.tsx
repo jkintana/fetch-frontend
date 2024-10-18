@@ -1,3 +1,5 @@
+import './DogImage.css'
+
 import Image from 'next/image'
 import { DogImageProps } from "@/types";
 
@@ -10,14 +12,13 @@ export default function DogImage(props: DogImageProps) {
     const src = props.src ? props.src : `https://placehold.co/${width}x${height}.png`;
 
     return (
-        <div>
-            <Image
-                src={src}
-                alt={props.alt}
-                style={{ objectFit: 'cover' }} 
-                width={width}
-                height={height}
-            />
-        </div>
+        <Image
+            className="dog-image"
+            src={src}
+            alt={props.alt}
+            style={{ objectFit: 'cover' }} 
+            width={width}
+            height={height}
+        />
     )
 }

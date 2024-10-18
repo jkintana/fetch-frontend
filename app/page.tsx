@@ -1,7 +1,9 @@
 'use client'
 
-import { useState, useEffect, ChangeEvent, Suspense } from 'react';
-import BreedButton from '@/components/BreedDisplay';
+import './page.css';
+
+import { useState, useEffect, ChangeEvent } from 'react';
+import BreedDisplay from '@/components/BreedDisplay';
 
 // Home page. Displays a list of dog breeds and a search bar.
 export default function Home() {
@@ -75,30 +77,31 @@ export default function Home() {
   };
 
   // Page content.
-  // TODO - Add better error handling rather than just a text with the error.
   return (
     <main>
-      <input
-        type="text"
-        placeholder="Search for a dog breed!"
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
-      <ul>
+      <div id="searchContainer">
+        <input
+          type="text"
+          placeholder=" Search for a dog breed!"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
+      <div>
         {breedImages.size === 0 && (
-          <p>{status}</p>
+          <div className="status">
+            <h2>{status}</h2>
+          </div>
         )}
 
         {breedImages.size > 0 && (
-          <div>
+          <div className="container">
             {filteredBreeds.map(breed => (
-              <li key={breed}>
-                <BreedButton name={breed} imageURL={breedImages.get(breed)} />
-              </li>
+              <BreedDisplay name={breed} imageURL={breedImages.get(breed)} />
             ))}
           </div>
         )}
-      </ul>
+      </div>
     </main>
   );
 }

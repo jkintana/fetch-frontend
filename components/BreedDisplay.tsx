@@ -1,3 +1,5 @@
+import './BreedDisplay.css'
+
 import { BreedDisplayProps } from "@/types"
 import DogImage from "@/components/DogImage"
 
@@ -5,10 +7,14 @@ import DogImage from "@/components/DogImage"
 // TODO: Mess around with styling and content.
 export default function BreedDisplay(props: BreedDisplayProps) {
     return (
-        <div>
+        <div className="item">
             <a href={`/breeds/${props.name}`}>
-                {props.name}
-                <DogImage src={props.imageURL} alt={props.name} />
+                <div>
+                    <DogImage src={props.imageURL} alt={props.name} />
+                </div>
+                <div className="breed-name">
+                    {props.name}
+                </div>
             </a>
         </div>
     )

@@ -1,0 +1,37 @@
+input {
+  font-size: 1.2em;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  width: 40%;
+  padding: 8px 15px;
+  border: 2px solid #333;
+  border-radius: 20px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.status {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item {
+  position: relative;
+  width: auto;
+}
