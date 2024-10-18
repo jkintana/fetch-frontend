@@ -25,17 +25,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Development Goals
 
 **Key Features**
-- [ ] Users should be able to select one or more dog breeds.
-- [ ] Selecting a breed should display images of that breed in the gallery.
+- [x] Users should be able to select one or more dog breeds.
+- [x] Selecting a breed should display images of that breed in the gallery.
 
 **Additional Features**
 - [x] API error handling.
 - [x] Search.
-- [ ] Accessibility.
-- [ ] Responsive.
-- [ ] Better loading?
-- [ ] Favorites?
-- [ ] Unit tests?
-- [ ] Sub-breeds?
-
-Friend suggested https://mantine.dev/ for CSS? Or build from scratch?
