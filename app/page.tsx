@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect, ChangeEvent } from 'react';
+import { useState, useEffect, ChangeEvent, Suspense } from 'react';
 import BreedButton from '@/components/BreedDisplay';
 
 // Home page. Displays a list of dog breeds and a search bar.
 export default function Home() {
-  const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<string>("Loading dog breeds...");
   const [breeds, setBreeds] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [filteredBreeds, setFilteredBreeds] = useState<string[]>([]);
@@ -23,7 +23,7 @@ export default function Home() {
         setBreeds(Object.keys(data.message));
       } catch (err) {
         console.error(err);
-        setError("Couldn't fetch dog breeds at this time!"); // TODO - Edit this
+        setStatus("Couldn't fetch dog breeds at this time!");
       }
     };
 
@@ -49,7 +49,6 @@ export default function Home() {
   // TODO - Add better error handling rather than just a text with the error.
   return (
     <main>
-      <p>{error}</p>
       <input
         type="text"
         placeholder="Search for a dog breed!"
@@ -57,11 +56,19 @@ export default function Home() {
         onChange={handleSearchChange}
       />
       <ul>
-        {filteredBreeds.map(breed => (
-          <li key={breed}>
-            <BreedButton name={breed} />
-          </li>
-        ))}
+        {filteredBreeds.length === 0 && (
+          <p>{status}</p>
+        )}
+
+        {filteredBreeds.length > 0 && (
+          <div>
+            {filteredBreeds.map(breed => (
+              <li key={breed}>
+                <BreedButton name={breed} />
+              </li>
+            ))}
+          </div>
+        )}
       </ul>
     </main>
   );

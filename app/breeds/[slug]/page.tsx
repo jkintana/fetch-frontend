@@ -1,9 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
+import DogImage from '@/components/DogImage';
 
 // Dynamically generated page that displays images of a specific dog breed. 
-export default function Breed({ params }: { params: { slug: string } }) { 
+export default function Breed({ params }: { params: { slug: string } }) {
+    const [status, setStatus] = useState<string>("Looking for dog images...");
     const [images, setImages] = useState<string[]>([]);
     
     // On page load, fetch images of the dog breed from the API.
@@ -19,6 +21,7 @@ export default function Breed({ params }: { params: { slug: string } }) {
                 setImages(data.message);
             } catch (err) {
                 console.error(err);
+                setStatus(`Couldn't fetch images of ${params.slug}!`);
             }
         };
 
@@ -31,8 +34,12 @@ export default function Breed({ params }: { params: { slug: string } }) {
             <title>{`${params.slug} | Dog Breeds Explorer`}</title>
             {/* Not exactly best practice, but wasn't sure how to do this. */}
 
+            {images.length === 0 && <h2>{status}</h2>}
+            
             {images.map((image, index) => (
-                <img key={index} src={image} alt={params.slug} />
+                <Fragment key={index}>
+                    <DogImage key={index} src={image} alt={params.slug} />
+                </Fragment>
             ))}
         </div>
     );
